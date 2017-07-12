@@ -3,6 +3,30 @@
   
     
     <entry>
+      <title><![CDATA[使用调试神器stetho碰到的一些问题]]></title>
+      <url>/2017/07/12/stetho-develop/</url>
+      <content type="html"><![CDATA[<h2 id="问题汇总"><a href="#问题汇总" class="headerlink" title="问题汇总"></a>问题汇总</h2><ul>
+<li>Android 4.4 开始，默认的浏览器已经是 chrome 了，所以 webview 也是 chrome 了，这就给了 webview 远程调试的能力。我们需要在 Android 里针对 Webview 做以下设置：<pre><code>if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true);
+       }
+</code></pre></li>
+<li>打正式的混淆包有可能会碰到监听不了网络的情况，此时需要在Proguard里配置 <pre><code>-keep class com.facebook.stetho.** { *; }  
+-dontwarn org.mozilla.javascript.**  
+-dontwarn org.mozilla.classfile.**  
+-keep class org.mozilla.javascript.** { *; } 
+</code></pre></li>
+<li>chrome远程调试按inspect后出现的界面为空白，应如何解决？ <ol>
+<li>因为chrome inspect需要加载 <a href="https://chrome-devtools-frontend.appspot.com" target="_blank" rel="external">https://chrome-devtools-frontend.appspot.com</a> 上的资源，所以需要翻墙。</li>
+<li>chrome://appcache-internals/# -&gt; remove cache -&gt; enjoy it</li>
+</ol>
+</li>
+</ul>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[入坑hexo独立博客]]></title>
       <url>/2017/07/04/create-hexo-blog/</url>
       <content type="html"><![CDATA[<h2 id="前戏"><a href="#前戏" class="headerlink" title="前戏"></a>前戏</h2><p>参考<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="external">hexo文档</a>, 有能力直接看英文。</p>
