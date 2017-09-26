@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-12T08:19:47.678Z</updated>
+  <updated>2017-09-26T05:48:28.078Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,119 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用DayNight主题和webview的冲突</title>
+    <link href="http://yoursite.com/2017/09/26/2017-09-26/"/>
+    <id>http://yoursite.com/2017/09/26/2017-09-26/</id>
+    <published>2017-09-26T02:47:57.000Z</published>
+    <updated>2017-09-26T05:48:28.078Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>这几天在使用DayNight主题的时候碰到一个坑,看官方的介绍是WebView用DayNight主题无效，且会有一些适配啥的问题，但是并没有明确什么问题。而当我用webview + DayNight theme的时候，发现当前webview所在的activity每次初次打开会重绘一次。如果里面有请求且用了注解，会找不到view的id而崩溃</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>经过调试，发现daynight主题只有含有webview的activity才会重绘一次。而重绘之后上一次初始化的activity的信息会被带到oncreate的Bundle里</p>
+<pre><code>protected void onCreate(@Nullable Bundle savedInstanceState)
+</code></pre><p>而第一次初始化的activity会执行onDestroy()</p>
+<p>所以目前有两种方案：</p>
+<p>1.在回调地方这样判断</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">this</span> == <span class="keyword">null</span> || <span class="keyword">this</span>.isDestroyed()) &#123;</div><div class="line"><span class="keyword">return</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>注意</strong>  <em>isDestroyed()是sdk 17以后才有的方法</em></p>
+<p>2.强制不重绘，在manifast找到相应的activity加上以下属性</p>
+<pre><code>android:configChanges=&quot;uiMode&quot;
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;p&gt;这几天在使用DayNight主题的时候碰到一个坑,看官方的介绍是WebView用DayNight主题无效，且会有一些适配啥的问题，但是并没有
+    
+    </summary>
+    
+      <category term="DayNight" scheme="http://yoursite.com/categories/DayNight/"/>
+    
+    
+      <category term="DayNight" scheme="http://yoursite.com/tags/DayNight/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>android imageview scaleType 和 adjustViewBounds</title>
+    <link href="http://yoursite.com/2017/08/07/android-imageview-scaleType/"/>
+    <id>http://yoursite.com/2017/08/07/android-imageview-scaleType/</id>
+    <published>2017-08-07T02:47:57.000Z</published>
+    <updated>2017-08-07T09:59:39.143Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>之前在用imageloader，glide等图片加载框架加载图片时，很喜欢给imageview设的几个属性是</p>
+<pre><code>android:scaleType=&quot;fitXY&quot;
+android:layout_width=&quot;wrap_content&quot;
+android:layout_height=&quot;wrap_content&quot;
+</code></pre><p>这样可以在不同手机上显示原图的大小，特别是一些小图标的显示，这样做，按照高分辨率兼容低分率的情况可以不用管适配问题。</p>
+<p>但是最近在项目里遇到一个问题，如果是一张超过部分手机分辨率的的大图，或者当前图片的宽高已然超过手机宽高，图片会变形。 即使设置<code>android:layout_width=&quot;match_parent&quot;</code>也一样</p>
+<p>先来看下scaletype的几个属性，样例imageview宽高都是match_parent</p>
+<h2 id="原图"><a href="#原图" class="headerlink" title="原图"></a>原图</h2><p><img src="/images/scale_type/fit_xy_adjustViewBounds.png" alt="&quot;加了adjustViewBounds&quot;"></p>
+<h2 id="FIT-XY"><a href="#FIT-XY" class="headerlink" title="FIT_XY"></a>FIT_XY</h2><blockquote>
+<p>Scale the image using FILL. </p>
+</blockquote>
+<p>把原图按照imageview的指定大小拉伸缩放图片，不按照比例。</p>
+<p><img src="/images/scale_type/fit_xy.png" alt="fit_xy"></p>
+<h2 id="CENTER"><a href="#CENTER" class="headerlink" title="CENTER"></a>CENTER</h2><blockquote>
+<p>Center the image in the view, but perform no scaling.</p>
+</blockquote>
+<p>保持原图的大小，显示在ImageView的中心。当原图的size大于ImageView的size，超过部分裁剪处理。</p>
+<p><img src="/images/scale_type/center.png" alt="fit_center"></p>
+<h2 id="CENTER-CROP"><a href="#CENTER-CROP" class="headerlink" title="CENTER_CROP"></a>CENTER_CROP</h2><blockquote>
+<p>Scale the image uniformly (maintain the image’s aspect ratio) so that both dimensions (width and height) of the image will be equal to or larger than the corresponding dimension of the view (minus padding).</p>
+</blockquote>
+<p>以填满整个ImageView为目的，将原图的中心对准ImageView的中心，等比例放大原图，直到填满ImageView为止（指的是ImageView的宽和高都要填满），原图超过ImageView的部分作裁剪处理 </p>
+<p><img src="/images/scale_type/center_crop.png" alt="CENTER_CROP"></p>
+<h2 id="CENTER-INSIDE"><a href="#CENTER-INSIDE" class="headerlink" title="CENTER_INSIDE"></a>CENTER_INSIDE</h2><blockquote>
+<p>Scale the image uniformly (maintain the image’s aspect ratio) so that both dimensions (width and height) of the image will be equal to or less than the corresponding dimension of the view (minus padding). </p>
+</blockquote>
+<p>以原图完全显示为目的，将图片的内容完整居中显示，通过按比例缩小原图的size宽(高)等于或小于ImageView的宽(高)。如果原图的size本身就小于ImageView的size，则原图的size不作任何处理，居中显示在ImageView。</p>
+<p><img src="/images/scale_type/center_inside.png" alt="CENTER_INSIDE"></p>
+<h2 id="FIT-CENTER"><a href="#FIT-CENTER" class="headerlink" title="FIT_CENTER"></a>FIT_CENTER</h2><blockquote>
+<p>Scale the image using CENTER. </p>
+</blockquote>
+<p>把原图按比例扩大或缩小到ImageView的高度，居中显示</p>
+<p><img src="/images/scale_type/fit_center.png" alt="FIT_CENTER"></p>
+<h2 id="FIT-START"><a href="#FIT-START" class="headerlink" title="FIT_START"></a>FIT_START</h2><blockquote>
+<p>Scale the image using START. </p>
+</blockquote>
+<p>把原图按比例扩大(缩小)到ImageView的高度，显示在ImageView的上部分位置</p>
+<p><img src="/images/scale_type/fit_start.png" alt="FIT_START"></p>
+<h2 id="FIT-END"><a href="#FIT-END" class="headerlink" title="FIT_END"></a>FIT_END</h2><blockquote>
+<p>Scale the image using END.</p>
+</blockquote>
+<p>把原图按比例扩大(缩小)到ImageView的高度，显示在ImageView的下部分位置 </p>
+<p><img src="/images/scale_type/fit_end.png" alt="FIT_END"></p>
+<h2 id="MATRIX"><a href="#MATRIX" class="headerlink" title="MATRIX"></a>MATRIX</h2><blockquote>
+<p>Scale using the image matrix when drawing. </p>
+</blockquote>
+<p>不改变原图的大小，从ImageView的左上角开始绘制原图，原图超过ImageView的部分作裁剪处理。</p>
+<p><img src="/images/scale_type/matrix.png" alt="MATRIX"></p>
+<h2 id="adjustViewBounds"><a href="#adjustViewBounds" class="headerlink" title="adjustViewBounds"></a>adjustViewBounds</h2><blockquote>
+<p>Set this to true if you want the ImageView to adjust its bounds to preserve the aspect ratio of its drawable.</p>
+<p>Note: If the application targets API level 17 or lower, adjustViewBounds will allow the drawable to shrink the view bounds, but not grow to fill available measured space in all cases. This is for compatibility with legacy MeasureSpec and RelativeLayout behavior.</p>
+</blockquote>
+<p>如果设置为true，允许imageview调整边界保持长宽比。 </p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>加一个属性保持缩放比<code>android:adjustViewBounds=&quot;true&quot;</code>就好了</p>
+<p>增加adjustViewBounds前<br><img src="/images/scale_type/fit_xy_not_adjustViewBounds.png" alt="&quot;没加adjustViewBounds&quot;"></p>
+<p>增加adjustViewBounds后<br><img src="/images/scale_type/fit_xy_adjustViewBounds.png" alt="&quot;加了adjustViewBounds&quot;"></p>
+<p>查阅资料，网上的说法是增加adjustViewBounds前不能单独使用，需要配合maxWidth或maxHeight一起使用。但是测试下来直接设置是有效的。 目前没有试上面说的targets 17以下的机型。</p>
+<p>然后稍微看了下源码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAdjustViewBounds</span><span class="params">(<span class="keyword">boolean</span> adjustViewBounds)</span> </span>&#123;</div><div class="line">     mAdjustViewBounds = adjustViewBounds;</div><div class="line">     <span class="keyword">if</span> (adjustViewBounds) &#123;</div><div class="line">         setScaleType(ScaleType.FIT_CENTER);</div><div class="line">     &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<p>设置adjustViewBounds，会改变scaletype为fitcenter，当imageview的宽高小于等于图片宽高时，fitcenter和fitxy+AdjustViewBounds 效果类似，但是imageview的宽高大于图片宽高时，fitcenter会居中缩放显示，fitxy+AdjustViewBounds会从上面缩放显示</p>
+<p>关于这个adjustViewBounds感觉还是得抽时间撸撸源码。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h1&gt;&lt;p&gt;之前在用imageloader，glide等图片加载框架加载图片时，很喜欢给imageview设的几个属性是&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+    
+    </summary>
+    
+    
+      <category term="scaleType;adjustViewBounds" scheme="http://yoursite.com/tags/scaleType-adjustViewBounds/"/>
+    
+  </entry>
   
   <entry>
     <title>使用调试神器stetho碰到的一些问题</title>
