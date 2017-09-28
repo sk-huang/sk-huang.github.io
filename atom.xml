@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-09-26T05:48:28.078Z</updated>
+  <updated>2017-09-28T06:56:09.433Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微信调用返回的坑</title>
+    <link href="http://yoursite.com/2017/09/28/2017-09-28/"/>
+    <id>http://yoursite.com/2017/09/28/2017-09-28/</id>
+    <published>2017-09-28T06:48:57.000Z</published>
+    <updated>2017-09-28T06:56:09.433Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天在做微信分享的时候，发现进入分享界面，什么都不做，直接返回，会有个微信的透明遮罩界面，得再返回一次就ok，通过调试，定位分析。最终查出问题所在：</p>
+<p>微信的WXEntryActivity类，必须得实现<code>oncrete()</code>方法，否则不会进入回调方法 </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天在做微信分享的时候，发现进入分享界面，什么都不做，直接返回，会有个微信的透明遮罩界面，得再返回一次就ok，通过调试，定位分析。最终查出问题所在：&lt;/p&gt;
+&lt;p&gt;微信的WXEntryActivity类，必须得实现&lt;code&gt;oncrete()&lt;/code&gt;方法，否则不会进
+    
+    </summary>
+    
+      <category term="微信" scheme="http://yoursite.com/categories/%E5%BE%AE%E4%BF%A1/"/>
+    
+    
+      <category term="微信" scheme="http://yoursite.com/tags/%E5%BE%AE%E4%BF%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>使用DayNight主题和webview的冲突</title>
