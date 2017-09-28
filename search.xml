@@ -3,6 +3,28 @@
   
     
     <entry>
+      <title><![CDATA[微信调用返回的坑]]></title>
+      <url>/2017/09/28/2017-09-28/</url>
+      <content type="html"><![CDATA[<p>今天在做微信分享的时候，发现进入分享界面，什么都不做，直接返回，会有个微信的透明遮罩界面，得再返回一次就ok，通过调试，定位分析。最终查出问题所在：</p>
+<p>微信的WXEntryActivity类，必须得实现<code>oncrete()</code>方法，否则不会进入回调方法 </p>
+]]></content>
+      
+        <categories>
+            
+            <category> wechat </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 微信 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[使用DayNight主题和webview的冲突]]></title>
       <url>/2017/09/26/2017-09-26/</url>
       <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>这几天在使用DayNight主题的时候碰到一个坑,看官方的介绍是WebView用DayNight主题无效，且会有一些适配啥的问题，但是并没有明确什么问题。而当我用webview + DayNight theme的时候，发现当前webview所在的activity每次初次打开会重绘一次。如果里面有请求且用了注解，会找不到view的id而崩溃</p>
