@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-11-14T08:56:48.821Z</updated>
+  <updated>2017-11-14T09:09:49.578Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/11/10/2017-11-13/"/>
     <id>http://yoursite.com/2017/11/10/2017-11-13/</id>
     <published>2017-11-10T07:54:57.000Z</published>
-    <updated>2017-11-14T08:56:48.821Z</updated>
+    <updated>2017-11-14T09:09:49.578Z</updated>
     
     <content type="html"><![CDATA[<h2 id="kotlin基础语法"><a href="#kotlin基础语法" class="headerlink" title="kotlin基础语法"></a>kotlin基础语法</h2><p>一句话概括kotlin：简洁，强大，安全</p>
 <h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><pre><code>val a: Int = 0    //简化 val a = 0  等同于 int a = 0  
