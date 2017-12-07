@@ -496,9 +496,9 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>之前在用imageloader，glide等图片加载框架加载图片时，很喜欢给imageview设的几个属性是</p>
-<pre><code>android:scaleType=&quot;fitXY&quot;
-android:layout_width=&quot;wrap_content&quot;
-android:layout_height=&quot;wrap_content&quot;
+<pre><code>        android:scaleType=&quot;fitXY&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
 </code></pre><p>这样可以在不同手机上显示原图的大小，特别是一些小图标的显示，这样做，按照高分辨率兼容低分率的情况可以不用管适配问题。</p>
 <p>但是最近在项目里遇到一个问题，如果是一张超过部分手机分辨率的的大图，或者当前图片的宽高已然超过手机宽高，图片会变形。 即使设置<code>android:layout_width=&quot;match_parent&quot;</code>也一样</p>
 <p>先来看下scaletype的几个属性，样例imageview宽高都是match_parent</p>
@@ -552,7 +552,14 @@ android:layout_height=&quot;wrap_content&quot;
 <p>增加adjustViewBounds前<br><img src="/images/scale_type/fit_xy_not_adjustViewBounds.png" alt="&quot;没加adjustViewBounds&quot;"></p>
 <p>增加adjustViewBounds后<br><img src="/images/scale_type/fit_xy_adjustViewBounds.png" alt="&quot;加了adjustViewBounds&quot;"></p>
 <p>查阅资料，网上的说法是增加adjustViewBounds前不能单独使用，需要配合maxWidth或maxHeight一起使用。但是测试下来直接设置是有效的。 目前没有试上面说的targets 17以下的机型。</p>
-<p>然后稍微看了下源码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAdjustViewBounds</span><span class="params">(<span class="keyword">boolean</span> adjustViewBounds)</span> </span>&#123;</div><div class="line">     mAdjustViewBounds = adjustViewBounds;</div><div class="line">     <span class="keyword">if</span> (adjustViewBounds) &#123;</div><div class="line">         setScaleType(ScaleType.FIT_CENTER);</div><div class="line">     &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<p>然后稍微看了下源码</p>
+<pre><code class="java">   public void setAdjustViewBounds(boolean adjustViewBounds) {
+        mAdjustViewBounds = adjustViewBounds;
+        if (adjustViewBounds) {
+            setScaleType(ScaleType.FIT_CENTER);
+        }
+    }
+</code></pre>
 <p>设置adjustViewBounds，会改变scaletype为fitcenter，当imageview的宽高小于等于图片宽高时，fitcenter和fitxy+AdjustViewBounds 效果类似，但是imageview的宽高大于图片宽高时，fitcenter会居中缩放显示，fitxy+AdjustViewBounds会从上面缩放显示</p>
 <p>关于这个adjustViewBounds感觉还是得抽时间撸撸源码。</p>
 
@@ -681,7 +688,7 @@ android:layout_height=&quot;wrap_content&quot;
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/11/">十一月 2017<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
+                <a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/11/">十一月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a>
             </ul>
         </li>
         
@@ -699,7 +706,7 @@ android:layout_height=&quot;wrap_content&quot;
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/DayNight/">DayNight<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/databinding/">databinding<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/hexo/">hexo<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/kotlin/">kotlin<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/wechat/">wechat<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/DayNight/">DayNight<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/databinding/">databinding<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/hexo/">hexo<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/kotlin/">kotlin<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/wechat/">wechat<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据结构/">数据结构<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         

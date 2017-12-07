@@ -974,6 +974,159 @@ fun iterating() {
     </entry>
     
     <entry>
+      <title><![CDATA[数据结构 前缀，中缀，后缀表达式]]></title>
+      <url>/2017/11/03/2017-11-03/</url>
+      <content type="html"><![CDATA[<p>一般的数学运算表达式都是中缀表达式</p>
+<p>中缀  a*(b+c)-d</p>
+<p>前缀表达式又称波兰表达式， 其实是树的二叉树前序遍历</p>
+<p>也可用栈的处理转换</p>
+<p>如上面转换前缀</p>
+<p>前缀数逆序读取</p>
+<table>
+<thead>
+<tr>
+<th>读取</th>
+<th>前缀栈</th>
+<th>栈1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>  d</td>
+<td>d</td>
+<td>空</td>
+</tr>
+<tr>
+<td>  -</td>
+<td>d</td>
+<td>-</td>
+</tr>
+<tr>
+<td>  )</td>
+<td>d</td>
+<td>-)</td>
+</tr>
+<tr>
+<td>  c</td>
+<td>dc</td>
+<td>-)</td>
+</tr>
+<tr>
+<td>  +</td>
+<td>dc</td>
+<td>-)+ </td>
+</tr>
+<tr>
+<td>  b</td>
+<td>dcb</td>
+<td>-)+ </td>
+</tr>
+<tr>
+<td>  (</td>
+<td>dcb+</td>
+<td>-  双括号匹配抵消外侧操作符出栈</td>
+</tr>
+<tr>
+<td>  *</td>
+<td>dcb+</td>
+<td>-* 加入的操作符&gt;=入栈，否则大的操作符出栈 </td>
+</tr>
+<tr>
+<td>  a</td>
+<td>dcb+a</td>
+<td>-* \</td>
+</tr>
+<tr>
+<td></td>
+<td>dcb+a*-</td>
+<td>-* 出栈</td>
+</tr>
+</tbody>
+</table>
+<p>逆序输出  -*a+bcd</p>
+<p>后缀数正序读取</p>
+<table>
+<thead>
+<tr>
+<th>读取</th>
+<th>后缀栈</th>
+<th>栈1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>  a</td>
+<td>a</td>
+<td>空</td>
+</tr>
+<tr>
+<td>  *</td>
+<td>a</td>
+<td>*</td>
+</tr>
+<tr>
+<td>  (</td>
+<td>a</td>
+<td>*(</td>
+</tr>
+<tr>
+<td>  b</td>
+<td>ab</td>
+<td>*(</td>
+</tr>
+<tr>
+<td>  +</td>
+<td>ab</td>
+<td>*(+ </td>
+</tr>
+<tr>
+<td>  c</td>
+<td>abc</td>
+<td>*(+</td>
+</tr>
+<tr>
+<td>  )</td>
+<td>abc+</td>
+<td>*  双括号匹配抵消内侧操作符出栈</td>
+</tr>
+<tr>
+<td>  -</td>
+<td>abc+</td>
+<td>*  加入的操作符&gt;=入栈，否则大的操作符出栈,直到小于，小的入栈 </td>
+</tr>
+<tr>
+<td>  d</td>
+<td>abc+*d</td>
+<td>- </td>
+</tr>
+<tr>
+<td>结束</td>
+<td>abc+*d-</td>
+<td>- 出栈</td>
+</tr>
+</tbody>
+</table>
+<p>正序输出  abc+*d- </p>
+]]></content>
+      
+        <categories>
+            
+            <category> 数据结构 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 表达式 </tag>
+            
+            <tag> 数据结构 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[微信调用返回的坑]]></title>
       <url>/2017/09/28/2017-09-28/</url>
       <content type="html"><![CDATA[<p>今天在做微信分享的时候，发现进入分享界面，什么都不做，直接返回，会有个微信的透明遮罩界面，得再返回一次就ok，通过调试，定位分析。最终查出问题所在：</p>
@@ -1032,9 +1185,9 @@ return;
       <title><![CDATA[android imageview scaleType 和 adjustViewBounds]]></title>
       <url>/2017/08/07/android-imageview-scaleType/</url>
       <content type="html"><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>之前在用imageloader，glide等图片加载框架加载图片时，很喜欢给imageview设的几个属性是</p>
-<pre><code>android:scaleType=&quot;fitXY&quot;
-android:layout_width=&quot;wrap_content&quot;
-android:layout_height=&quot;wrap_content&quot;
+<pre><code>        android:scaleType=&quot;fitXY&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
 </code></pre><p>这样可以在不同手机上显示原图的大小，特别是一些小图标的显示，这样做，按照高分辨率兼容低分率的情况可以不用管适配问题。</p>
 <p>但是最近在项目里遇到一个问题，如果是一张超过部分手机分辨率的的大图，或者当前图片的宽高已然超过手机宽高，图片会变形。 即使设置<code>android:layout_width=&quot;match_parent&quot;</code>也一样</p>
 <p>先来看下scaletype的几个属性，样例imageview宽高都是match_parent</p>
@@ -1088,7 +1241,14 @@ android:layout_height=&quot;wrap_content&quot;
 <p>增加adjustViewBounds前<br><img src="/images/scale_type/fit_xy_not_adjustViewBounds.png" alt="&quot;没加adjustViewBounds&quot;"></p>
 <p>增加adjustViewBounds后<br><img src="/images/scale_type/fit_xy_adjustViewBounds.png" alt="&quot;加了adjustViewBounds&quot;"></p>
 <p>查阅资料，网上的说法是增加adjustViewBounds前不能单独使用，需要配合maxWidth或maxHeight一起使用。但是测试下来直接设置是有效的。 目前没有试上面说的targets 17以下的机型。</p>
-<p>然后稍微看了下源码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAdjustViewBounds</span><span class="params">(<span class="keyword">boolean</span> adjustViewBounds)</span> </span>&#123;</div><div class="line">     mAdjustViewBounds = adjustViewBounds;</div><div class="line">     <span class="keyword">if</span> (adjustViewBounds) &#123;</div><div class="line">         setScaleType(ScaleType.FIT_CENTER);</div><div class="line">     &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<p>然后稍微看了下源码</p>
+<pre><code class="java">   public void setAdjustViewBounds(boolean adjustViewBounds) {
+        mAdjustViewBounds = adjustViewBounds;
+        if (adjustViewBounds) {
+            setScaleType(ScaleType.FIT_CENTER);
+        }
+    }
+</code></pre>
 <p>设置adjustViewBounds，会改变scaletype为fitcenter，当imageview的宽高小于等于图片宽高时，fitcenter和fitxy+AdjustViewBounds 效果类似，但是imageview的宽高大于图片宽高时，fitcenter会居中缩放显示，fitxy+AdjustViewBounds会从上面缩放显示</p>
 <p>关于这个adjustViewBounds感觉还是得抽时间撸撸源码。</p>
 ]]></content>
@@ -1106,14 +1266,14 @@ android:layout_height=&quot;wrap_content&quot;
       <title><![CDATA[使用调试神器stetho碰到的一些问题]]></title>
       <url>/2017/07/12/stetho-develop/</url>
       <content type="html"><![CDATA[<h2 id="问题汇总"><a href="#问题汇总" class="headerlink" title="问题汇总"></a>问题汇总</h2><ul>
-<li>Android 4.4 开始，默认的浏览器已经是 chrome 了，所以 webview 也是 chrome 了，这就给了 webview 远程调试的能力。我们需要在 Android 里针对 Webview 做以下设置：<pre><code>if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.KITKAT) {
-            WebView.setWebContentsDebuggingEnabled(true);
-       }
+<li>Android 4.4 开始，默认的浏览器已经是 chrome 了，所以 webview 也是 chrome 了，这就给了 webview 远程调试的能力。我们需要在 Android 里针对 Webview 做以下设置：<pre><code>  if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.KITKAT) {
+              WebView.setWebContentsDebuggingEnabled(true);
+         }
 </code></pre></li>
-<li>打正式的混淆包有可能会碰到监听不了网络的情况，此时需要在Proguard里配置 <pre><code>-keep class com.facebook.stetho.** { *; }  
--dontwarn org.mozilla.javascript.**  
--dontwarn org.mozilla.classfile.**  
--keep class org.mozilla.javascript.** { *; } 
+<li>打正式的混淆包有可能会碰到监听不了网络的情况，此时需要在Proguard里配置 <pre><code>  -keep class com.facebook.stetho.** { *; }  
+  -dontwarn org.mozilla.javascript.**  
+  -dontwarn org.mozilla.classfile.**  
+  -keep class org.mozilla.javascript.** { *; } 
 </code></pre></li>
 <li>chrome远程调试按inspect后出现的界面为空白，应如何解决？ <ol>
 <li>因为chrome inspect需要加载 <a href="https://chrome-devtools-frontend.appspot.com" target="_blank" rel="external">https://chrome-devtools-frontend.appspot.com</a> 上的资源，所以需要翻墙。</li>
@@ -1144,9 +1304,13 @@ android:layout_height=&quot;wrap_content&quot;
 <li>配置里所有的冒号后面得有一个空格</li>
 </ul>
 <h2 id="hexo部署"><a href="#hexo部署" class="headerlink" title="hexo部署"></a>hexo部署</h2><p>依次执行下列执行完成部署</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
+<pre><code class="cmd">hexo g
+hexo d
+</code></pre>
 <p>此时可能会碰到<code>Deployer not found: git</code>的问题</p>
-<p>执行<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
+<p>执行</p>
+<pre><code class="cmd">npm install hexo-deployer-git --save
+</code></pre>
 <p>重新deploy，等待命令窗执行</p>
 <p>出现<code>INFO  Deploy done: git</code>即部署成功</p>
 <p>点击 Github 上项目的 Settings，滑动到GitHub Pages，提示Your site is published at xxx.github.io</p>
