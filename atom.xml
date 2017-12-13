@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-12-07T07:12:24.353Z</updated>
+  <updated>2017-12-13T08:49:21.617Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,84 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Kotlin函数的默认参数和命名参数</title>
+    <link href="http://yoursite.com/2017/12/13/2017-12-13/"/>
+    <id>http://yoursite.com/2017/12/13/2017-12-13/</id>
+    <published>2017-12-13T02:54:57.000Z</published>
+    <updated>2017-12-13T08:49:21.617Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><p>函数的参数可以有默认值，使用 <code>=</code> 定义默认值。</p>
+<p>如：</p>
+<pre><code class="kotlin">fun reformat(str: String,
+             normalizeCase: Boolean = true,
+             upperCaseFirstLetter: Boolean = true,
+             divideByCamelHumps: Boolean = false,
+             wordSeparator: Char = &#39; &#39;) {
+
+}
+</code></pre>
+<p>后面4个参数都有默认值，如果后面参数使用默认值，则可直接使用 <code>reformat(&quot;test&quot;)</code> 调用</p>
+<p>当覆盖一个父类的方法时，总是使用父类的默认参数值。当覆盖一个带有默认值参数的父类方法时，必须从参数中省略默认的参数值：</p>
+<pre><code class="kotlin">open class A {
+    open fun test(i: Int = 10) { …… }
+}
+
+class B : A() {
+    override fun test(i: Int) { …… } // 不能有默认值
+}
+</code></pre>
+<h3 id="命明参数"><a href="#命明参数" class="headerlink" title="命明参数"></a>命明参数</h3><p>可以在调用函数时，使用命名的函数参数。</p>
+<p>如：</p>
+<pre><code class="java">fun reformat(str: String,
+             normalizeCase: Boolean = true,
+             upperCaseFirstLetter: Boolean = true,
+             divideByCamelHumps: Boolean ,
+             wordSeparator: Char = &#39; &#39;) {
+
+}
+</code></pre>
+<p>第一个和第四个参数没有默认值，可以这样调用:</p>
+<pre><code class="kotlin">reformat(str = &quot;a&quot;, normalizeCase = false, upperCaseFirstLetter = false, divideByCamelHumps = false, wordSeparator = &#39;b&#39;)
+</code></pre>
+<p>如果有想省略的参数可以这样调用：</p>
+<pre><code class="kotlin">reformat(&quot;a&quot;, divideByCamelHumps = false)
+</code></pre>
+<p>如果一个默认参数在一个无默认值参数的前面，那么想使用改默认值只能通过 <strong>命名参数</strong> 调用：</p>
+<pre><code class="kotlin">fun foo(bar: Int = 0, baz: Int) { /* …… */ }
+
+foo(baz = 1) // 使用默认值 bar = 0
+</code></pre>
+<p>当一个函数调用混用位置参数与命名参数时，所有位置参数都要放在第一个命名参数之前。</p>
+<p>例如：</p>
+<pre><code>fun f(x: Int = 1, z: Int = 1, y: Int) {}
+
+f(1, y = 2)  //允许
+f(x = 1, 2)  //报错
+f(x = 1, y = 2) //允许
+</code></pre><h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>使用命名参数和默认参数可以很好的<strong>减少重载函数的数量</strong>，使代码更少更容易阅读</li>
+<li>在调用 Java 函数时不能使用命名参数语法，因为 Java 字节码并不总是保留函数参<br>数的名称</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;默认参数&quot;&gt;&lt;a href=&quot;#默认参数&quot; class=&quot;headerlink&quot; title=&quot;默认参数&quot;&gt;&lt;/a&gt;默认参数&lt;/h3&gt;&lt;p&gt;函数的参数可以有默认值，使用 &lt;code&gt;=&lt;/code&gt; 定义默认值。&lt;/p&gt;
+&lt;p&gt;如：&lt;/p&gt;
+&lt;pre&gt;&lt;code 
+    
+    </summary>
+    
+      <category term="kotlin" scheme="http://yoursite.com/categories/kotlin/"/>
+    
+    
+      <category term="kotlin" scheme="http://yoursite.com/tags/kotlin/"/>
+    
+      <category term="命名参数" scheme="http://yoursite.com/tags/%E5%91%BD%E5%90%8D%E5%8F%82%E6%95%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>databinding 自定义方法</title>
