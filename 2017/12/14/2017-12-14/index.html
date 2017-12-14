@@ -43,7 +43,7 @@
     
     <title>
         
-            kotlin for android (四) | 
+            android studio 3.0 编译java工程报错 | 
         
         sk&#39;blog
     </title>
@@ -54,7 +54,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="">
-    <meta name="keywords" content="null,kotlin">
+    <meta name="keywords" content="null,as 3.0">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -220,7 +220,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="sk&#39;blog">
-    <meta name="msapplication-starturl" content="http://yoursite.com/2017/11/23/2017-11-23/">
+    <meta name="msapplication-starturl" content="http://yoursite.com/2017/12/14/2017-12-14/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="sk&#39;blog">
@@ -235,16 +235,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://yoursite.com/2017/11/23/2017-11-23/">
+    <meta property="og:url" content="http://yoursite.com/2017/12/14/2017-12-14/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="kotlin for android (四) | sk&#39;blog">
+    <meta property="og:title" content="android studio 3.0 编译java工程报错 | sk&#39;blog">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="">
-    <meta property="og:article:tag" content="kotlin"> 
+    <meta property="og:article:tag" content="as 3.0"> 
 
     
-        <meta property="article:published_time" content="Thu Nov 23 2017 15:54:57 GMT+0800">
-        <meta property="article:modified_time" content="Tue Dec 05 2017 19:02:19 GMT+0800">
+        <meta property="article:published_time" content="Thu Dec 14 2017 15:54:57 GMT+0800">
+        <meta property="article:modified_time" content="Thu Dec 14 2017 16:34:01 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -252,7 +252,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/2017/11/23/2017-11-23/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2017/12/14/2017-12-14/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -264,10 +264,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "http://yoursite.com/2017/11/23/2017-11-23/index.html",
-    "headline": "kotlin for android (四)",
-    "datePublished": "Thu Nov 23 2017 15:54:57 GMT+0800",
-    "dateModified": "Tue Dec 05 2017 19:02:19 GMT+0800",
+    "mainEntityOfPage": "http://yoursite.com/2017/12/14/2017-12-14/index.html",
+    "headline": "android studio 3.0 编译java工程报错",
+    "datePublished": "Thu Dec 14 2017 15:54:57 GMT+0800",
+    "dateModified": "Thu Dec 14 2017 16:34:01 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "sk",
@@ -285,7 +285,7 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",kotlinnull",
+    "keywords": ",as 3.0null",
     "description": "",
 }
 </script>
@@ -351,7 +351,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实用方法与技巧"><span class="post-toc-number">1.</span> <span class="post-toc-text">实用方法与技巧</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Say-Goodbye-to-findViewById"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Say Goodbye to findViewById</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分离java文件和kotlin文件"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">分离java文件和kotlin文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用KotlinByteCode查看当前kotlin的生成源码"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">使用KotlinByteCode查看当前kotlin的生成源码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用插件自动将json转化pojo类"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">使用插件自动将json转化pojo类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关键字、字符意义对照表"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">关键字、字符意义对照表</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#错误提示"><span class="post-toc-number">1.</span> <span class="post-toc-text">错误提示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解决"><span class="post-toc-number">2.</span> <span class="post-toc-text">解决</span></a></li></ol>
     </ul>
     
 
@@ -383,7 +383,7 @@
         
     
             <p class="article-headline-p">
-                kotlin for android (四)
+                android studio 3.0 编译java工程报错
             </p>
         </div>
 
@@ -402,7 +402,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>sk</strong>
-        <span>11月 23, 2017</span>
+        <span>12月 14, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -426,7 +426,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/kotlin/">kotlin</a>
+        <a class="post_tag-link" href="/tags/as-3-0/">as 3.0</a>
     </ul>
     
 
@@ -443,7 +443,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=kotlin for android (四)&url=http://yoursite.com/2017/11/23/2017-11-23/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=android studio 3.0 编译java工程报错&url=http://yoursite.com/2017/12/14/2017-12-14/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -452,7 +452,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=kotlin for android (四)&url=http://yoursite.com/2017/11/23/2017-11-23/index.html&via=sk" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=android studio 3.0 编译java工程报错&url=http://yoursite.com/2017/12/14/2017-12-14/index.html&via=sk" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -461,7 +461,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/23/2017-11-23/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/12/14/2017-12-14/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -470,7 +470,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/23/2017-11-23/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2017/12/14/2017-12-14/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -495,41 +495,8 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="实用方法与技巧"><a href="#实用方法与技巧" class="headerlink" title="实用方法与技巧"></a>实用方法与技巧</h2><h3 id="Say-Goodbye-to-findViewById"><a href="#Say-Goodbye-to-findViewById" class="headerlink" title="Say Goodbye to findViewById"></a>Say Goodbye to findViewById</h3><ol>
-<li>在根目录的gradle文件中应用extensions插件 <pre><code>apply plugin: &#39;kotlin-android-extensions&#39;
-</code></pre></li>
-<li>sync后就可以直接import当前的xml属性 <pre><code class="kotlin">import kotlinx.android.synthetic.main.activity_test1.*
-</code></pre>
-</li>
-<li>使用如下<pre><code>//class
-import kotlinx.android.synthetic.main.activity_test1.*
-class TestKtActivity : AppCompatActivity() {
- override fun onCreate(savedInstanceState: Bundle?) {
-     super.onCreate(savedInstanceState)
-     setContentView(R.layout.activity_test1)
-     tvText.text = &quot;test&quot;
- }
-}
-//xml
-&lt;Button
-         android:id=&quot;@+id/tvText&quot;
-         android:layout_width=&quot;wrap_content&quot;
-         android:layout_height=&quot;wrap_content&quot;
-         android:layout_gravity=&quot;center&quot;
-         android:text=&quot;hello，这是kotlin 测试&quot; /&gt;
-</code></pre></li>
-</ol>
-<h3 id="分离java文件和kotlin文件"><a href="#分离java文件和kotlin文件" class="headerlink" title="分离java文件和kotlin文件"></a>分离java文件和kotlin文件</h3><ol>
-<li>在java文件夹同级目录创建kotlin文件夹<br><img src="https://i.imgur.com/hsmAQWa.png" alt="分离文件层级"></li>
-<li>在主module目录下的gradle文件中添加 <pre><code class="gradle">sourceSets{
-     main.java.srcDirs += &quot;src/main/kotlin&quot;
- }
-</code></pre>
-</li>
-</ol>
-<h3 id="使用KotlinByteCode查看当前kotlin的生成源码"><a href="#使用KotlinByteCode查看当前kotlin的生成源码" class="headerlink" title="使用KotlinByteCode查看当前kotlin的生成源码"></a>使用KotlinByteCode查看当前kotlin的生成源码</h3><p>Tools -&gt; Kotlin -&gt; KotlinByteCode， 在相应的kt文件点击decompile，可以知道当前<code>.kt</code>生成的 java 语句是否正确</p>
-<h3 id="使用插件自动将json转化pojo类"><a href="#使用插件自动将json转化pojo类" class="headerlink" title="使用插件自动将json转化pojo类"></a>使用插件自动将json转化pojo类</h3><p>plugin -&gt; JsonToKotlinClass</p>
-<h3 id="关键字、字符意义对照表"><a href="#关键字、字符意义对照表" class="headerlink" title="关键字、字符意义对照表"></a>关键字、字符意义对照表</h3><p><a href="https://kotlinlang.org/docs/reference/keyword-reference.html" target="_blank" rel="external">https://kotlinlang.org/docs/reference/keyword-reference.html</a></p>
+        <h3 id="错误提示"><a href="#错误提示" class="headerlink" title="错误提示"></a>错误提示</h3><pre><code>Error:Gradle: java.util.concurrent.ExecutionException: java.util.concurrent.ExecutionException: com.android.tools.aapt2.Aapt2Exception: AAPT2 error: check logs for details
+</code></pre><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>在 gradle.properties 里加入 <code>android.enableAapt2=false</code>关闭aapt2就好了</p>
 
         
     
@@ -550,21 +517,13 @@ class TestKtActivity : AppCompatActivity() {
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/11/24/2017-11-24/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2017/11/22/2017-11-22/" id="post_nav-older" class="next-content">
+        <a href="/2017/12/13/2017-12-13/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">

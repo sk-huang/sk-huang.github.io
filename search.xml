@@ -3,6 +3,28 @@
   
     
     <entry>
+      <title><![CDATA[android studio 3.0 编译java工程报错]]></title>
+      <url>/2017/12/14/2017-12-14/</url>
+      <content type="html"><![CDATA[<h3 id="错误提示"><a href="#错误提示" class="headerlink" title="错误提示"></a>错误提示</h3><pre><code>Error:Gradle: java.util.concurrent.ExecutionException: java.util.concurrent.ExecutionException: com.android.tools.aapt2.Aapt2Exception: AAPT2 error: check logs for details
+</code></pre><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>在 gradle.properties 里加入 <code>android.enableAapt2=false</code>关闭aapt2就好了</p>
+]]></content>
+      
+        <categories>
+            
+            <category> as 3.0 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> as 3.0 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Kotlin函数的默认参数和命名参数]]></title>
       <url>/2017/12/13/2017-12-13/</url>
       <content type="html"><![CDATA[<h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><p>函数的参数可以有默认值，使用 <code>=</code> 定义默认值。</p>

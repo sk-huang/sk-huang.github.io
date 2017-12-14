@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-12-13T08:49:21.617Z</updated>
+  <updated>2017-12-14T08:34:01.165Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>android studio 3.0 编译java工程报错</title>
+    <link href="http://yoursite.com/2017/12/14/2017-12-14/"/>
+    <id>http://yoursite.com/2017/12/14/2017-12-14/</id>
+    <published>2017-12-14T07:54:57.000Z</published>
+    <updated>2017-12-14T08:34:01.165Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="错误提示"><a href="#错误提示" class="headerlink" title="错误提示"></a>错误提示</h3><pre><code>Error:Gradle: java.util.concurrent.ExecutionException: java.util.concurrent.ExecutionException: com.android.tools.aapt2.Aapt2Exception: AAPT2 error: check logs for details
+</code></pre><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>在 gradle.properties 里加入 <code>android.enableAapt2=false</code>关闭aapt2就好了</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;错误提示&quot;&gt;&lt;a href=&quot;#错误提示&quot; class=&quot;headerlink&quot; title=&quot;错误提示&quot;&gt;&lt;/a&gt;错误提示&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;Error:Gradle: java.util.concurrent.ExecutionException:
+    
+    </summary>
+    
+      <category term="as 3.0" scheme="http://yoursite.com/categories/as-3-0/"/>
+    
+    
+      <category term="as 3.0" scheme="http://yoursite.com/tags/as-3-0/"/>
+    
+  </entry>
   
   <entry>
     <title>Kotlin函数的默认参数和命名参数</title>
